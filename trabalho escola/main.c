@@ -21,6 +21,9 @@ Descrição: versão inicial da atividade Escola.
 - Listar Professores -- Tamires 02/06/2019 (OK)
 - Cadastro de Disciplinas -- Tamires 02/06/2019 (Com BUG, pulando inserção de dados nos campos)
 - Listar Disciplinas -- Tamires 02/06/2019 ()
+- Validação de Data de nascimento -- Tamires 11/06/2019 (OK)
+- Validação de Sexo -- Tamires 11/06/2019 (OK)
+- Validação de Matrícula -- Tamires 11/06/2019 (OK)
 */
 
 #include <stdio.h>
