@@ -565,7 +565,7 @@ void listarProfessor(Professor lista_prof[], int qtd_prof){
 
 
 int ValidaData(int dia, int mes, int ano){
-
+/* data inválida quando a variável 'validade' retorna 0*/
     int validade;
 
 	if (mes > 12 || mes < 1 || dia < 1 || dia > 31){
@@ -575,8 +575,8 @@ int ValidaData(int dia, int mes, int ano){
 		validade = 0;
 	}
 	else if ((dia < 1 && dia > 30) && (mes == 4|| mes == 6 || mes == 9 || mes == 11)){
-        validade = 0;
-    }
+        	validade = 0;
+    	}
 	else if (ano % 400 == 0 || (ano % 4 == 0 && ano % 100 != 0)) {
 		if (mes == 2 && dia > 29) {
 			validade = 0;
@@ -585,7 +585,5 @@ int ValidaData(int dia, int mes, int ano){
 	else if (mes == 2 && dia > 28) {
 		validade = 0;
 	}
-
 	return validade;
 }
-
