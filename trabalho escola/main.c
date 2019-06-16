@@ -3,8 +3,10 @@ Instituto Federal de Ciência e Tecnologia da Bahia - Campus Salvador
 Disciplina: Laboratório de Programação INFO29
 Professor: Renato Novais
 Semestre: 2019.1
+Autores: Tamires Manhães
+Matrícula : 2016216026
 
-Escola-v1.c, 31/05/2019, Autores: Tamires Manhães;
+Escola-v1.c, 31/05/2019, 
 
 Descrição: versão inicial da atividade Escola.
 - Criação de struct Aluno -- Tamires
