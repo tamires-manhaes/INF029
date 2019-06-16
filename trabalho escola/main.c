@@ -4,7 +4,7 @@ Disciplina: Laboratório de Programação INFO29
 Professor: Renato Novais
 Semestre: 2019.1
 
-Escola-v1.c, 31/05/2019, Autores: Tamires Manhães , Amir Brito, Ari Godinho, Erick Macedo
+Escola-v1.c, 31/05/2019, Autores: Tamires Manhães;
 
 Descrição: versão inicial da atividade Escola.
 - Criação de struct Aluno -- Tamires
@@ -19,26 +19,27 @@ Descrição: versão inicial da atividade Escola.
 - Listar Alunos -- Tamires 02/06/2019 (OK)
 - Cadastro de Professores -- Tamires 02/06/2019 (OK)
 - Listar Professores -- Tamires 02/06/2019 (OK)
-- Cadastro de Disciplinas -- Tamires 02/06/2019 (Com BUG, pulando inserção de dados nos campos)
+- Cadastro de Disciplinas -- Tamires 02/06/2019 // Refeito 16/06/2019
 - Listar Disciplinas -- Tamires 02/06/2019 ()
 - Validação de Data de nascimento -- Tamires 11/06/2019 (OK)
 - Validação de Sexo -- Tamires 11/06/2019 (OK)
 - Validação de Matrícula -- Tamires 11/06/2019 (OK)
+- Listar Disciplinas -- Tamires 16/06/2019 (OK)
 */
 
 #include <stdio.h>
 #include <stdlib.h> 
 #include <string.h>
 #include <ctype.h>
+#include <stddef.h>
+
 #define TAMANHO 3
 #define CADASTRADO_SUCESSO 1
+#define ATUALIZADO_SUCESSO 4
 #define ERRO_CADASTRO_MATRICULA 2
 #define ERRO_CADASTRO_SEXO 3
-#define DATA_NASCIMENTO_INVALIDA 4
+#define DATA_NASCIMENTO_INVALIDA 0
 
-
-//structs
-//struct que separa data de nascimento
 struct dma {
     int dia;
     int mes;
@@ -65,13 +66,13 @@ typedef struct dados_professor {
 
 // criação struct dos dados das disciplinas separados por letra e numero
 typedef struct codigo {
-    char letra[3];
-    int numero;
+    char letra[5];
+    char numero[5];
 } Codigo;
 
 //criação struct dos dados da disciplina
 typedef struct dados_disciplinas {
-    char nome[50];
+    char nome[53];
     struct codigo cod;
 } Disciplina;
 
@@ -79,9 +80,15 @@ void MenuPrincipal();
 void MenuSecundario();
 void MenuRelatorio();
 int incluirAluno (Aluno lista_aluno[], int qtd_alunos);
+int atualizarAluno(Aluno lista_aluno[], int qtd_aluno, int matricula);
+void excluirAluno(Aluno lista_aluno[], int qtd_aluno, int matricula);
 void listarAlunos(Aluno lista_aluno[], int qtd_alunos);
 int incluirProfessor(Professor lista_prof[], int qtd_prof);
+int atualizarProfessor(Professor lista_prof[], int qtd_prof, int matricula);
+void excluirProfessor(Professor lista_prof[], int qtd_prof, int matricula);
 void listarProfessor(Professor lista_prof[], int qtd_prof);
+int incluirDisciplina(Disciplina lista_disci[], int qtd_disciplina);
+void listarDisciplina(Disciplina lista_disci[], int qtd_disciplina);
 int ValidaData(int dia, int mes, int ano);
 
 int main(){
@@ -284,24 +291,14 @@ int main(){
                         }
 
                         case 1: {
+                            int resultado; 
                             printf(" Incluir...\n");
-                         
-                            printf("Codigo: \n");
-                            printf("Letra: ");
-                            size_t ln = strlen(lista_disci[qtd_disciplina].cod.letra) -1;
-                            if(lista_disci[qtd_disciplina].cod.letra[ln] == '\n')
+                            incluirDisciplina(lista_disci, qtd_disciplina);
 
-                            printf("Numero: ");
-                            scanf("%d", &lista_disci[qtd_disciplina].cod.numero);
-                            fflush(stdin);
-
-                            printf("Nome: ");
-                            fgets(lista_disci[qtd_disciplina].nome, 50, stdin);
-                            ln = strlen(lista_disci[qtd_disciplina].nome) -1;
-                            if(lista_disci[qtd_disciplina].nome[ln] == '\n')
-                                lista_disci[qtd_disciplina].nome[ln] = '\0';
-
-                            qtd_disciplina++;
+                            if (resultado == CADASTRADO_SUCESSO){
+                                printf("Disciplina cadastrada com sucesso!\n");
+                                qtd_disciplina++;
+                            }
                             break;
                         }
 
@@ -356,15 +353,17 @@ int main(){
 
                         case 3: {
                             printf("Listando Disciplinas...\n");
+                            listarDisciplina(lista_disci, qtd_disciplina);
+                            break;
+                        }
 
-                            int d_contador;
-                            for(d_contador = 0; d_contador < qtd_disciplina; d_contador++){
-                                printf("--------\n");
-                                printf("Codigo: %s%d \n", lista_disci[d_contador].cod.letra, lista_disci[d_contador].cod.numero);
-                                printf("Nome: %s\n", lista_disci[d_contador].nome);
-                            }
+                        case 4: {
+                            printf("Listar Alunos por sexo");
+                            break;
+                        }
 
-                            printf("-------\n");
+                        case 5: {
+                            printf("Listar Professores por sexo");
                             break;
                         }
                         
@@ -429,6 +428,8 @@ void MenuRelatorio(){
     printf(" 1 - Listar Alunos\n");
     printf(" 2 - Listar Professores\n");
     printf(" 3 - Listar Disciplinas\n");
+    printf(" 4 - Listar Alunos por sexo\n");
+    printf(" 5 - Listar Professores por sexo\n");
     printf("----------------------------------\n");
     printf("Digite opcao desejada: ");
     
@@ -469,7 +470,7 @@ int incluirAluno (Aluno lista_aluno[], int qtd_alunos) {
         scanf("%d", &lista_aluno[qtd_alunos].data_nascimento.ano);
         getchar();
 
-        if(ValidaData(lista_aluno[qtd_alunos].data_nascimento.dia, lista_aluno[qtd_alunos].data_nascimento.mes, lista_aluno[qtd_alunos].data_nascimento.ano) == 0){
+        if(ValidaData(lista_aluno[qtd_alunos].data_nascimento.dia, lista_aluno[qtd_alunos].data_nascimento.mes, lista_aluno[qtd_alunos].data_nascimento.ano) != 0){
             printf("Digite o CPF: ");
             fgets(lista_aluno[qtd_alunos].cpf, 12, stdin); 
             ln = strlen(lista_aluno[qtd_alunos].cpf) - 1; 
@@ -483,6 +484,15 @@ int incluirAluno (Aluno lista_aluno[], int qtd_alunos) {
         printf("\n");
 
     return CADASTRADO_SUCESSO;
+}
+
+int atualizarAluno(Aluno lista_aluno[], int qtd_aluno, int matricula){
+
+    return ATUALIZADO_SUCESSO;
+}
+
+void excluirAluno(Aluno lista_aluno[], int qtd_aluno, int matricula){
+
 }
 
 void listarAlunos(Aluno lista_aluno[], int qtd_alunos){
@@ -500,6 +510,7 @@ void listarAlunos(Aluno lista_aluno[], int qtd_alunos){
 
     printf("-----\n");
 }
+
 
 int incluirProfessor( Professor lista_prof[], int qtd_prof) {
 
@@ -550,6 +561,16 @@ int incluirProfessor( Professor lista_prof[], int qtd_prof) {
     return CADASTRADO_SUCESSO;
 }
 
+int atualizarProfessor (Professor lista_prof[], int qtd_prof, int matricula){
+
+    return ATUALIZADO_SUCESSO;
+}
+
+void exlcuirProfessor(Professor lista_prof[], int qtd_prof, int matricula){
+
+
+}
+
 void listarProfessor(Professor lista_prof[], int qtd_prof){
 
     int p_contador;
@@ -562,10 +583,37 @@ void listarProfessor(Professor lista_prof[], int qtd_prof){
         printf("Data Nascimento: %d/%d/%d\n", lista_prof[p_contador].data_nascimento.dia, lista_prof[p_contador].data_nascimento.mes, lista_prof[p_contador].data_nascimento.ano);
         printf("CPF: %s\n", lista_prof[p_contador].cpf);
     }
-
     printf("-------\n");
 }
 
+int incluirDisciplina(Disciplina lista_disci[], int qtd_disciplina){
+
+    printf("Nome: ");
+    scanf("%s", &lista_disci[qtd_disciplina].nome);
+    fflush(stdin);
+
+    printf("Codigo: \n");
+    printf("Letra: ");
+    scanf("%s", &lista_disci[qtd_disciplina].cod.letra);
+    fflush(stdin);
+
+    printf("Numero: ");
+    scanf("%s", &lista_disci[qtd_disciplina].cod.numero);
+    fflush(stdin);
+
+    return CADASTRADO_SUCESSO;
+}
+
+void listarDisciplina(Disciplina lista_disci[], int qtd_disciplina){
+    int d_contador;
+    for(d_contador = 0; d_contador < qtd_disciplina; d_contador++){
+        printf("--------\n");
+        printf("Codigo: %s%s \n", lista_disci[d_contador].cod.letra, lista_disci[d_contador].cod.numero);
+        printf("Nome: %s\n", lista_disci[d_contador].nome);
+    }
+
+    printf("-------\n");
+}
 
 int ValidaData(int dia, int mes, int ano){
 /* data inválida quando a variável 'validade' retorna 0*/
@@ -590,3 +638,5 @@ int ValidaData(int dia, int mes, int ano){
 	}
 	return validade;
 }
+
+
