@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcoes.h"
 
 void menu();
 int questao1(int valor1, int valor2);
 int questao2(int valor1, int valor2, int valor3);
-void questao3();
-void questao4();
-void questao5();
+int questao3(int valor);
+int questao4(int valor1, int valor2, int valor3);
+void questao5(Numero lista_num, int valor1, int valor2, int valor3, int valor4);
+void listarQ5(Numero lista_num);
 void questao6();
 void questao7();
 void questao8();
@@ -15,7 +17,10 @@ void questao8();
 int main(){ 
     int valor1Q1, valor2Q1, resultadoQ1; //questão 1
     int valor1Q2, valor2Q2, valor3Q2, resultadoQ2; // questão 2
-
+    int valor1Q3, resultadoQ3; //questão 3
+    int valor1Q4, valor2Q4, valor3Q4, valor4Q, vetor[3]; //questão 4
+    int valor1Q5, valor2Q5, valor3Q5, valor4Q5;
+    //Numero lista_num; // questão 5
 
     int opcao, sair = 0;
      while (!sair){
@@ -67,6 +72,13 @@ int main(){
                 /*Faça um programa que tenha uma função que recebe um número inteiro e retorna o fatorial deste número. 
                 Esta função deve ainda verificar se é possível calcular o fatorial, se não for, ela deve de alguma forma retornar para a main que deu
                  algum erro. A função main deve solicitar o valor do usuário e imprimir o fatorial dele, ou se não é possível calcular o fatorial. */
+                printf("Digite valor: ");
+                scanf("%d", &valor1Q3);
+
+                resultadoQ3 = questao3(valor1Q3);
+
+                printf("Resultado = %d\n", resultadoQ3);
+
                 break;
             }
 
@@ -74,6 +86,23 @@ int main(){
                 printf("Questao 4\n");
                 /*Crie um programa que tenha uma função ler3Numeros. Essa função deve ler três números do usuário e retornar os três números.
                 A função main deve imprimir esses três números. Utilize vetor para fazer o retorno. */
+                printf("Digite valor 1: ");
+                scanf("%d", &valor1Q4);
+
+                printf("Digite valor 2: ");
+                scanf("%d", &valor2Q4);
+
+                printf("Digite valor 3: ");
+                scanf("%d", &valor3Q4);
+
+                vetor[3] = questao4 (valor1Q4, valor2Q4, valor3Q4);
+
+                printf("Retorno: ");
+                for (int i = 0; i < 3; i++){
+                    printf("%d", vetor[i]);
+                }
+                
+
                 break;
             }
 
@@ -81,6 +110,20 @@ int main(){
                 printf("Questao 5\n");
                 /*Crie um programa que tenha uma função ler4Numeros. Essa função deve ler quatro números do usuário e retornar os quatro números. 
                 A função main deve imprimir esses três números. Utilize struct para fazer o retorno. */
+                printf("Digite valor 1:");
+                scanf("%d", &valor1Q5);
+
+                printf("Digite valor 2:");
+                scanf("%d", &valor2Q5);
+
+                printf("Digite valor 3:");
+                scanf("%d", &valor3Q5);
+
+                printf("Digite valor 4:");
+                scanf("%d", &valor4Q5);
+
+                questao5(lista_num, valor1Q5, valor2Q5, valor3Q5, valor4Q5);
+
                 break;
             }
 
@@ -132,62 +175,3 @@ int main(){
     return 0;
 }
 
-int questao1(int valor1, int valor2) {
-    int resultado;
-
-    resultado = valor1 + valor2;
-
-    return resultado;
-}
-
-int questao2(int valor1, int valor2, int valor3){
-    int resultado;
-
-    resultado = valor1 - valor2 - valor3;
-
-    return resultado;
-}
-
-void questao3(){
-    
-}
-
-void questao4(){
-    
-}
-
-void questao5(){
-    
-}
-
-void questao6(){
-    
-}
-
-void questao7(){
-    
-}
-
-void questao8(){
-    
-}
-
-void questao9(){
-    
-}
-
-void menu(){
-    printf("\n##### LISTA DE EXERCICIOS - FUNÇÕES ######\n");
-    printf(" 0 - Sair\n");
-    printf(" 1 - Questão 1\n");
-    printf(" 2 - Questão 2\n");
-    printf(" 3 - Questão 3\n");
-    printf(" 4 - Questão 4\n");
-    printf(" 5 - Questão 5\n");
-    printf(" 6 - Questão 6\n");
-    printf(" 7 - Questão 7\n");
-    printf(" 8 - Questão 8\n");
-    printf(" 9 - Questão 9\n");
-    printf("\n");
-    printf("Digite opcao desejada: ");
-}
