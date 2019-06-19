@@ -10,17 +10,17 @@ int questao4(int valor1, int valor2, int valor3);
 void questao5(Numero lista_num, int valor1, int valor2, int valor3, int valor4);
 void listarQ5(Numero lista_num);
 void questao6();
-void questao7();
-void questao8();
-void questao8();
+int questao7(Palavra palavra, int qtd_palavra);
+int questao8(Cliente pessoa);
+void listarQ8(Cliente pessoa);
+int questao9();
 
 int main(){ 
     int valor1Q1, valor2Q1, resultadoQ1; //questão 1
     int valor1Q2, valor2Q2, valor3Q2, resultadoQ2; // questão 2
     int valor1Q3, resultadoQ3; //questão 3
     int valor1Q4, valor2Q4, valor3Q4, valor4Q, vetor[3]; //questão 4
-    int valor1Q5, valor2Q5, valor3Q5, valor4Q5;
-    //Numero lista_num; // questão 5
+    int valor1Q5, valor2Q5, valor3Q5, valor4Q5; // questão 5
 
     int opcao, sair = 0;
      while (!sair){
@@ -38,6 +38,7 @@ int main(){
                 printf("Questao 1\n\n");
                 /*Crie um programa que tenha uma função soma e a função main. A função main deve ler dois valores, enviar para a função soma.
                  A função soma deve realizar a soma e retornar o valor. A Função main deve imprimir o resultado da soma. */
+
                 printf("Digite valor 1: ");
                 scanf("%d", &valor1Q1);
                 printf("Digite valor 2: ");
@@ -53,6 +54,7 @@ int main(){
                 /*Crie um programa que tenha uma função subtrai e a função main. A função main deve ler três valores, enviar para a função subtrai.
                  A função subtrai deve realizar a subtração dos três valores (primeiro menos o segundo menos o terceiro) e retornar o valor.
                  A Função main deve imprimir o resultado da subtração. */
+
                 printf("Digite valor 1: ");
                 scanf("%d", &valor1Q2);
                 printf("Digite valor 2: ");
@@ -71,7 +73,8 @@ int main(){
                 printf("Questao 3\n");
                 /*Faça um programa que tenha uma função que recebe um número inteiro e retorna o fatorial deste número. 
                 Esta função deve ainda verificar se é possível calcular o fatorial, se não for, ela deve de alguma forma retornar para a main que deu
-                 algum erro. A função main deve solicitar o valor do usuário e imprimir o fatorial dele, ou se não é possível calcular o fatorial. */
+                algum erro. A função main deve solicitar o valor do usuário e imprimir o fatorial dele, ou se não é possível calcular o fatorial. */
+                
                 printf("Digite valor: ");
                 scanf("%d", &valor1Q3);
 
@@ -86,6 +89,7 @@ int main(){
                 printf("Questao 4\n");
                 /*Crie um programa que tenha uma função ler3Numeros. Essa função deve ler três números do usuário e retornar os três números.
                 A função main deve imprimir esses três números. Utilize vetor para fazer o retorno. */
+                
                 printf("Digite valor 1: ");
                 scanf("%d", &valor1Q4);
 
@@ -110,6 +114,7 @@ int main(){
                 printf("Questao 5\n");
                 /*Crie um programa que tenha uma função ler4Numeros. Essa função deve ler quatro números do usuário e retornar os quatro números. 
                 A função main deve imprimir esses três números. Utilize struct para fazer o retorno. */
+                
                 printf("Digite valor 1:");
                 scanf("%d", &valor1Q5);
 
@@ -131,6 +136,7 @@ int main(){
                 printf("Questao 6\n");
                 /*Crie um programa que tenha uma função ler3Letras. Essa função deve ler três letras do usuário e retornar as três letras. 
                 A função main deve imprimir essas três letras. */
+                
                 break;
             }
 
@@ -138,13 +144,29 @@ int main(){
                 printf("Questao 7\n");
                 /*Crie um programa que tenha uma função ler3Palavras. Essa função deve ler três palavras do usuário e retornar as três palavras. 
                 A função main deve imprimir essas três palavras. */
+
+                int retorno;
+
+                
                 break;
             }
 
             case 8: {
                 printf("Questao 8\n");
                 /*Crie um programa que tenha uma função cadastrarCliente. Essa função deve ler os dados do cliente (nome, dataNascimento, cpf, sexo)
-                 e retornar os dados do cliente. A função main deve imprimir os dados do cliente. */
+                e retornar os dados do cliente. A função main deve imprimir os dados do cliente. */
+                
+                int retorno;
+
+                retorno = questao8(pessoa);
+                if (retorno == 1){
+                    printf("Cadastrado com Sucesso!\n");
+                } else {
+                    printf("Não foi possível completar o cadastro!\n");
+                }
+                
+                listarQ8(pessoa);
+
                 break;
             }
 
@@ -159,6 +181,7 @@ int main(){
                   o e O para outro).
                 • função validarCPF: recebe o cpf digitado, e valida é um cpf válido;
                 • função validarNacimento: recebe o data digitada, e valida é uma data válida.*/
+                
                 break;
             }
                 
@@ -167,8 +190,8 @@ int main(){
                 break;
             }
                 
-            }
         }
+    }
      
     
 
