@@ -6,11 +6,10 @@ void menu();
 int questao1(int valor1, int valor2);
 int questao2(int valor1, int valor2, int valor3);
 int questao3(int valor);
-int questao4(int valor1, int valor2, int valor3);
+int questao4(int *vetor, int valor1, int valor2, int valor3);
 void questao5(Numero lista_num, int valor1, int valor2, int valor3, int valor4);
-void listarQ5(Numero lista_num);
-void questao6();
-int questao7(Palavra palavra, int qtd_palavra);
+int questao6(Palavras ler3palavras, int *vetor_palavras);
+void questao7(Palavra palavra, int qtd_palavra);
 int questao8(Cliente pessoa);
 void listarQ8(Cliente pessoa);
 int questao9();
@@ -21,6 +20,8 @@ int main(){
     int valor1Q3, resultadoQ3; //questão 3
     int valor1Q4, valor2Q4, valor3Q4, valor4Q, vetor[3]; //questão 4
     int valor1Q5, valor2Q5, valor3Q5, valor4Q5; // questão 5
+    int vetor_palavras[3];
+    int qtd_palavra; // questão 7
 
     int opcao, sair = 0;
      while (!sair){
@@ -99,11 +100,11 @@ int main(){
                 printf("Digite valor 3: ");
                 scanf("%d", &valor3Q4);
 
-                vetor[3] = questao4 (valor1Q4, valor2Q4, valor3Q4);
+                vetor[3] = questao4 (vetor, valor1Q4, valor2Q4, valor3Q4);
 
                 printf("Retorno: ");
                 for (int i = 0; i < 3; i++){
-                    printf("%d", vetor[i]);
+                    printf("%d\n", vetor[i]);
                 }
                 
 
@@ -128,7 +129,7 @@ int main(){
                 scanf("%d", &valor4Q5);
 
                 questao5(lista_num, valor1Q5, valor2Q5, valor3Q5, valor4Q5);
-
+                
                 break;
             }
 
@@ -136,7 +137,15 @@ int main(){
                 printf("Questao 6\n");
                 /*Crie um programa que tenha uma função ler3Letras. Essa função deve ler três letras do usuário e retornar as três letras. 
                 A função main deve imprimir essas três letras. */
-                
+                /* 
+                vetor_palavras[3] = questao6(ler3palavras, vetor_palavras);
+
+                int i;
+
+                printf("Retorno: ");
+                for (int i = 0; i < 3; i++){
+                    printf("%d\n", vetor_palavras[i]);
+                }
                 break;
             }
 
@@ -144,10 +153,14 @@ int main(){
                 printf("Questao 7\n");
                 /*Crie um programa que tenha uma função ler3Palavras. Essa função deve ler três palavras do usuário e retornar as três palavras. 
                 A função main deve imprimir essas três palavras. */
+               // questao7(palavra, qtd_palavra);
 
-                int retorno;
+                int cont = 3;
 
-                
+                for(qtd_palavra = 0; cont >= qtd_palavra; qtd_palavra-- ){
+                    printf("Palavra: %s", palavra[qtd_palavra].palavra);
+                }
+
                 break;
             }
 
@@ -161,11 +174,10 @@ int main(){
                 retorno = questao8(pessoa);
                 if (retorno == 1){
                     printf("Cadastrado com Sucesso!\n");
+                    listarQ8(pessoa);
                 } else {
                     printf("Não foi possível completar o cadastro!\n");
                 }
-                
-                listarQ8(pessoa);
 
                 break;
             }

@@ -30,11 +30,17 @@ typedef struct palavra {
     char palavra[100];
 } Palavra;
 
+typedef struct palavras {
+  char palavra1[10];
+} Palavras;
+
 
 Numero lista_num; 
 Data data_nascimento;
 Cliente pessoa;
 Palavra palavra[3];
+Palavras ler3palavras[3];
+
 
 int questao1(int valor1, int valor2) {
 
@@ -68,8 +74,8 @@ int questao3(int valor){
   return fator;
 }
 
-int questao4(int valor1, int valor2, int valor3){
-    int vetor[3], j;
+int questao4(int *vetor, int valor1, int valor2, int valor3){
+    int j;
 
     vetor[0] = valor1;
     vetor[1] = valor2;
@@ -84,25 +90,48 @@ void questao5(Numero lista_num, int valor1, int valor2, int valor3, int valor4){
     lista_num.valor2 = valor2;
     lista_num.valor3 = valor3;
     lista_num.valor4 = valor4;
-
-    listarQ5(lista_num);
-}
-
-void listarQ5(Numero lista_num){
+    printf("\n");
 
     printf("%d\n", lista_num.valor1);
     printf("%d\n", lista_num.valor2);
     printf("%d\n", lista_num.valor3);
     printf("%d\n", lista_num.valor4);
-}
-
-void questao6(){
-    
+    printf("----\n");
 }
 
 /* 
+void listarQ5(Numero lista_num){
 
-int questao7(Palavra palavra, int qtd_palavra){
+    
+}
+*/
+
+void questao6(Palavras ler3palavras, int *vetor_palavras){
+    char palavra1[10];
+    char palavra2[10];
+    char palavra3[10];
+
+    printf("Palavra 1: ");
+    scanf("%s", &palavra1);
+    fflush(stdin);
+
+    printf("Palavra 2: ");
+    scanf("%s", &palavra2);
+    fflush(stdin);
+
+    printf("Palavra 3: ");
+    scanf("%s", &palavra3);
+    fflush(stdin);  
+
+    vetor_palavras[0] = palavra1;
+    vetor_palavras[1] = palavra2;
+    vetor_palavras[2] = palavra3;
+
+    return *vetor_palavras;
+}
+
+ /* 
+void questao7(Palavra palavra, int qtd_palavra){
 
     while(qtd_palavra <= 3){
                     
@@ -110,10 +139,8 @@ int questao7(Palavra palavra, int qtd_palavra){
         scanf("%s", &palavra[qtd_palavra].palavra);
 
         qtd_palavra++;
-
     }
 }
-
 */
 
 int questao8(Cliente pessoa){
