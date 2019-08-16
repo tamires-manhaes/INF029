@@ -1,0 +1,11 @@
+void *realloc (void *ptr, unsigned int num);
+
+-- a funcao modifica o tamanho da memória previamente alocada apontada por *ptr para aquele especificado por num.
+-- um ponteiro para o bloco é devolvido poque o realloc() pode precisar mover o bloco para aumentar seu tamanho.
+    -- se isso ocorrer, o conteudo do bloco antigo é copiado no novo bloco, e nenhuma informação é perdida.
+    
+    
+tamanho original = x 
+novo valor = n
+resultado print = x+n
+sendo que x+n >= 1
