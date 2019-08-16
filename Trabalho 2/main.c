@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h> 
 #include <stdlib.h>
 
@@ -83,17 +82,4 @@ int main(){
     
     return 0;
     
-=======
-
-#include <stdio.h>
-#include "moduloFuncoes.h"
-#define TAM 10
-
-int main() {
-	int Vetor[TAM];
-	printf("Adeus gcc\n");
-	menu();
-
-	return 0;
->>>>>>> 25a4e5f6ac77af9865a99329673cf1afd315d877
 }
