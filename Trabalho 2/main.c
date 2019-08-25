@@ -1,19 +1,18 @@
 #include <stdio.h> 
 #include <stdlib.h>
-
 #include "EstruturaVetores.h"
 
 int main(){
-    
     int op;
     int sair = 0;
     int ret;
+
     while (!sair){
         op = menu();
         switch (op){
             case 0:{
                 sair =1;
-                liberarEspacosEstruturasAuxiliares();
+                finalizar();
                 break;
             }
             case 1:{ //inserir
@@ -52,7 +51,7 @@ int main(){
                         //imprimir para os dados para o usuário
                         int i = 0;
                         for (; i < qtd; i++){
-                            printf("%d", vetorAux[i]);
+                            printf ("%d", vetorAux[i]);
                             
                         }
                     }                        
@@ -60,24 +59,12 @@ int main(){
                 break;
             }
             
-            case 10:{ //dobrar
-                //ler um numero
-                // int valor;
-                // scanf("%i", &valor);
-                
-                // dobrar(&valor);
-                
-                // //passar para um funcao (void dobrar(...)) que recebe o numero e dobra (EstruturaVetores.c)
-                
-                // printf("%i", valor);
-                
+            default: {
+                printf("Opcao invalida, tente novamente...\n");
                 break;
             }
-            
-            default:{
-                printf("opcao inválida\n");
-            }
         }
+        
     }
     
     return 0;
