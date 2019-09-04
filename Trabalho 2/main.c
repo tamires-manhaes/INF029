@@ -2,6 +2,20 @@
 #include <stdlib.h>
 #include "EstruturaVetores.h"
 
+/*TO DO LIST: 
+- Inicializar vetor principal apontando tudo pra NULL ou 0
+- Criar Validação de Posição do vetor principal
+- Criar validação de quantidade de posições a ser alocada
+- Criar função de alocação 
+- Criar função de inserção de elemento
+  - Varrer para procurar posição válida no principal e primeira vazia no auxiliar
+- Criar função de remoção de elemento
+- Criar função de listagem das listas auxiliares por posição no vetor principal
+- Criar função de listagem de todas as listas auxiliares
+- Criar função de realocação
+- Criar função de liberação de memória
+*/
+
 int main(){
     int op;
     int sair = 0;
