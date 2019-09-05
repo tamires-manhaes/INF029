@@ -15,23 +15,22 @@ typedef struct vetorPrincipal {
     int *auxiliar; //ponteiro para estrutura auxliliar
     int  tamanho; // tamanho para alocar a estrutura auxiliar
     int quantidade; //contador de elementos no vetor
-}Principal;
+}PRINCIPAL;
 
-Principal principal[TAMANHO];
-
-
-int criarEstruturaAuxiliar(int tamanho, int posicao); //
-int inserirNumeroEmEstrutura(int valor, int posicao); //
+int criarEstruturaAuxiliar(PRINCIPAL *vetor_principal, int tamanho, int posicao); //
+int inserirNumeroEmEstrutura(PRINCIPAL *vetor_principal, int valor, int posicao); //
 int excluirNumeroDoFinaldaEstrutura(int posicao);
 int excluirNumeroEspecificoDeEstrutura(int valor, int posicao);
-int getDadosEstruturaAuxiliar(int posicao, int auxiliar[]);
+int getDadosEstruturaAuxiliar(PRINCIPAL *vetor_principal, int posicao);
 int getDadosOrdenadosEstruturaAuxiliar(int posicao, int auxiliar[]);
-int getDadosDeTodasEstruturasAuxiliares(int auxiliar[]);
+int getDadosDeTodasEstruturasAuxiliares(PRINCIPAL *vetor_principal, int vetorAux[]);
 int getDadosOrdenadosDeTodasEstruturasAuxiliares(int auxiliar[]);
-int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho);
-int getQuantidadeElementosEstruturaAuxiliar(int posicao);
-void resetStruct(principal);
-void finalizar();
+int modificarTamanhoEstruturaAuxiliar(PRINCIPAL *vetor_principal, int posicao, int novoTamanho);
+int getQuantidadeElementosEstruturaAuxiliar(PRINCIPAL *vetor_principal, int posicao);
+int ehPosicaoValida(int posicao);
+void inicializar(PRINCIPAL *vetor_principal);
+void finalizar(PRINCIPAL *vetor_principal);
+int verificaEstrutura(PRINCIPAL *vetor_principal, int posicao);
 int menu();
 
 /*
