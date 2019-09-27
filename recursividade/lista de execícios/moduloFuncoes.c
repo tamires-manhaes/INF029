@@ -45,11 +45,10 @@ void questao13 (int n) {
 	}
 }
 
-int questao14 (int n){
-	if(n < 0) {
-		return 0;
-	}
-	2 + naturaisPares(n - 2);
+void questao14 (int n){
+	if(n > 0) {
+		2 + naturaisPares(n - 2);
 	printf("%d ", n);
+	}	
 }
 
