@@ -18,9 +18,9 @@ int questao3 (int n){
     if(n == 0)
       return n;
     else {
-		printf("%d", n % 10);
-		n = n / 10;
-		return invert(n);
+	printf("%d", n % 10);
+	n = n / 10;
+	return invert(n);
     }
 }
 
@@ -28,7 +28,7 @@ int questao4 (int *v, int tamanho){
  if (tamanho == 1)
       return v[0];
    else 
-	  return v[tamanho - 1] + questao4(v, tamanho - 1); 
+	return v[tamanho - 1] + questao4(v, tamanho - 1); 
 }
 
 int questao12 (int n) {
