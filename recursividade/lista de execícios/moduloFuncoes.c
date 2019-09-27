@@ -38,7 +38,7 @@ void questao12 (int n) {
 	}
 }
 
-int questao13 (int n) {
+void questao13 (int n) {
 	if(n > 0) {
 		printf("%d ", n);
 		naturaisDec(n - 1);
